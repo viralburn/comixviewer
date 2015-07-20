@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import ch.oblivion.comixviewer.engine.PageResolverException;
 import ch.oblivion.comixviewer.engine.domain.Page;
 import ch.oblivion.comixviewer.engine.domain.Profile;
+import ch.oblivion.comixviewer.engine.resolver.PageResolverException;
 
 public class PageResolverTest {
 	

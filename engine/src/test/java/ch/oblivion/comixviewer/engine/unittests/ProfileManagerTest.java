@@ -15,10 +15,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.oblivion.comixviewer.engine.ComixProfileManager;
-import ch.oblivion.comixviewer.engine.PageResolverException;
 import ch.oblivion.comixviewer.engine.domain.Page;
 import ch.oblivion.comixviewer.engine.domain.Profile;
+import ch.oblivion.comixviewer.engine.resolver.PageResolverException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,19 +25,17 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class ProfileManagerTest {
 	
 	private final transient Logger logger = LoggerFactory.getLogger(ProfileManagerTest.class);
-	private final transient ComixProfileManager manager = new ComixProfileManager();
+	List<Profile> profiles = new ArrayList<Profile>();
 	
 	@Before
 	public void loadTestProfiles() throws JsonParseException, JsonMappingException, IOException {
-		List<Profile> profiles = new ArrayList<Profile>();
 		profiles.add(TestUtilities.loadProfile(TestUtilities.XKCD_JSON_PROFILE));
 		profiles.add(TestUtilities.loadProfile(TestUtilities.TWP_JSON_PROFILE));
-		manager.setProfiles(profiles);
 	}
 	
 	@Test
 	public void testProfilePages() throws PageResolverException, JsonParseException, JsonMappingException, IOException, InterruptedException {
-		for (Profile profile : manager.getProfiles()) {
+		for (Profile profile : profiles) {
 			testProfile(profile, 2);	
 		}
 	}

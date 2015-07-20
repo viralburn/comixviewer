@@ -5,19 +5,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import ch.oblivion.comixviewer.engine.PageResolver;
-import ch.oblivion.comixviewer.engine.PageResolverException;
+import ch.oblivion.comixviewer.engine.resolver.PageResolver;
+import ch.oblivion.comixviewer.engine.resolver.PageResolverException;
 import ch.oblivion.comixviewer.engine.resolver.regex.RegexPageResolver;
 import ch.oblivion.comixviewer.engine.resolver.xpath.XPathPageResolver;
 
+/**
+ * A Profile is a heavy weight object containing both the page resolver and list of pages.
+ * Profiles are given a unique ID so that they can be globally differentiated. 
+ */
 public class Profile {
-
+	
 	private final List<Page> pages = new ArrayList<Page>();
 	
+	private UUID id;
 	private String name;
 	private URL firstPageURL;
 	
@@ -34,6 +40,17 @@ public class Profile {
 		return resolver.resolve(stream);
 	}
 	
+	public UUID getId() {
+		if (id == null) {
+			id = UUID.randomUUID();
+		}
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

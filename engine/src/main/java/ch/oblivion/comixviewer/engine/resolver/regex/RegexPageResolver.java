@@ -3,9 +3,9 @@ package ch.oblivion.comixviewer.engine.resolver.regex;
 import java.io.InputStream;
 import java.util.regex.Pattern;
 
-import ch.oblivion.comixviewer.engine.PageResolver;
-import ch.oblivion.comixviewer.engine.PageResolverException;
 import ch.oblivion.comixviewer.engine.domain.Page;
+import ch.oblivion.comixviewer.engine.resolver.PageResolver;
+import ch.oblivion.comixviewer.engine.resolver.PageResolverException;
 
 public class RegexPageResolver implements PageResolver {
 

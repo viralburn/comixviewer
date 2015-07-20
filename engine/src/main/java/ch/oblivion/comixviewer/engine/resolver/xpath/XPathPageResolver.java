@@ -9,9 +9,9 @@ import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.Document;
 import org.w3c.tidy.Tidy;
 
-import ch.oblivion.comixviewer.engine.PageResolver;
-import ch.oblivion.comixviewer.engine.PageResolverException;
 import ch.oblivion.comixviewer.engine.domain.Page;
+import ch.oblivion.comixviewer.engine.resolver.PageResolver;
+import ch.oblivion.comixviewer.engine.resolver.PageResolverException;
 
 /**
  * Parse an XML input stream.
