@@ -19,7 +19,7 @@ import ch.oblivion.comixviewer.engine.domain.ProfileDescriptionList;
  * Provide methods to serialise / deserialise and collect default profiles.
  * @author mark
  */
-public class ProfileServices {
+public class ComixService {
 	
 	private ObjectMapper mapper = new ObjectMapper();
 

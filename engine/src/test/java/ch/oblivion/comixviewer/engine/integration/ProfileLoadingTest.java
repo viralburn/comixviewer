@@ -16,7 +16,7 @@ import ch.oblivion.comixviewer.engine.ComixException;
 import ch.oblivion.comixviewer.engine.domain.Profile;
 import ch.oblivion.comixviewer.engine.domain.ProfileDescription;
 import ch.oblivion.comixviewer.engine.domain.ProfileDescriptionList;
-import ch.oblivion.comixviewer.engine.services.ProfileServices;
+import ch.oblivion.comixviewer.engine.services.ComixService;
 import ch.oblivion.comixviewer.engine.unittests.TestUtilities;
 
 public class ProfileLoadingTest {
@@ -40,7 +40,7 @@ public class ProfileLoadingTest {
 		FileOutputStream outputStreamXkcd = null;
 		FileOutputStream outputStreamTwp = null;
 		try {
-			ProfileServices services = new ProfileServices();
+			ComixService services = new ComixService();
 			
 			outputStreamDesc = new FileOutputStream(fileDesc);
 			services.serialiseProfileDescriptionList(outputStreamDesc, list);
@@ -65,7 +65,7 @@ public class ProfileLoadingTest {
 	
 	@Test
 	public void loadProfileDescriptionList() throws ComixException {
-		ProfileServices service = new ProfileServices();
+		ComixService service = new ComixService();
 		InputStream inputStream = getClass().getResourceAsStream(JSON_PROFILE_DESCRIPTION_LIST_JSON);
 		try {
 			ProfileDescriptionList list = service.deserialiseProfileDescriptionList(inputStream);
