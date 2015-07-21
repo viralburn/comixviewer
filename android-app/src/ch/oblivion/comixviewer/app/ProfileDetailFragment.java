@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import ch.oblivion.comixviewer.app.dummy.DummyContent;
+import ch.oblivion.comixviewer.app.model.ProfileManager;
+import ch.oblivion.comixviewer.engine.domain.ProfileDescription;
 
 /**
  * A fragment representing a single Profile detail screen.
@@ -16,6 +16,9 @@ import ch.oblivion.comixviewer.app.dummy.DummyContent;
  * on handsets.
  */
 public class ProfileDetailFragment extends Fragment {
+	
+	private ProfileManager manager = ProfileManager.getProfileManager();
+	
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -25,7 +28,7 @@ public class ProfileDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private ProfileDescription mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,7 +45,7 @@ public class ProfileDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = manager.getProfileDescription(getArguments().getString(ARG_ITEM_ID));
         }
     }
 
@@ -53,7 +56,7 @@ public class ProfileDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.profile_detail)).setText(mItem.content);
+            ((TextView) rootView.findViewById(R.id.profile_detail)).setText(mItem.getName());
         }
 
         return rootView;

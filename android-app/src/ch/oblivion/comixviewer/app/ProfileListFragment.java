@@ -1,13 +1,13 @@
 package ch.oblivion.comixviewer.app;
 
+import ch.oblivion.comixviewer.app.model.ProfileManager;
+import ch.oblivion.comixviewer.engine.domain.ProfileDescription;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import ch.oblivion.comixviewer.app.dummy.DummyContent;
 
 /**
  * A list fragment representing a list of Profiles. This fragment
@@ -19,6 +19,8 @@ import ch.oblivion.comixviewer.app.dummy.DummyContent;
  * interface.
  */
 public class ProfileListFragment extends ListFragment {
+	
+	private ProfileManager manager = ProfileManager.getProfileManager();
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -71,11 +73,11 @@ public class ProfileListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        setListAdapter(new ArrayAdapter<ProfileDescription>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                DummyContent.ITEMS));
+                manager.getProfileDescriptions()));
     }
 
     @Override
@@ -115,7 +117,7 @@ public class ProfileListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(manager.getProfileDescription(position).getId().toString());
     }
 
     @Override
